@@ -30,6 +30,15 @@
             background-color: #f0c962;
             transform: scale(1.05);
         }
+        .lang-btn {
+            color: #9CA3AF;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .lang-btn:hover, .lang-btn.active {
+            color: #d4af37;
+        }
         .card {
             background-color: #111111;
             border: 1px solid #222222;
@@ -103,11 +112,18 @@
                 SKY<span class="accent-color">RENDER</span>
             </a>
             <nav class="hidden md:flex items-center space-x-8">
-                <a href="#services" class="text-gray-300 hover:text-white transition-colors">Services</a>
-                <a href="#gallery" class="text-gray-300 hover:text-white transition-colors">Gallery</a>
-                <a href="#contact" class="text-gray-300 hover:text-white transition-colors">Contact</a>
+                <a href="#services" class="text-gray-300 hover:text-white transition-colors" data-i18n="nav_services">Services</a>
+                <a href="#gallery" class="text-gray-300 hover:text-white transition-colors" data-i18n="nav_gallery">Gallery</a>
+                <a href="#contact" class="text-gray-300 hover:text-white transition-colors" data-i18n="nav_contact">Contact</a>
+                
+                <!-- Language Toggle Desktop -->
+                <div class="flex space-x-2 border-l border-gray-700 pl-6">
+                    <button onclick="changeLanguage('en')" class="lang-btn" id="btn-en">EN</button>
+                    <span class="text-gray-600">/</span>
+                    <button onclick="changeLanguage('ru')" class="lang-btn" id="btn-ru">RU</button>
+                </div>
             </nav>
-            <a href="#contact" class="hidden md:block button-primary font-bold py-2 px-5 rounded-lg shadow-sm">
+            <a href="#contact" class="hidden md:block button-primary font-bold py-2 px-5 rounded-lg shadow-sm" data-i18n="nav_start">
                 Start a Project
             </a>
             <button id="mobile-menu-button" class="md:hidden text-white">
@@ -115,33 +131,41 @@
             </button>
         </div>
         <div id="mobile-menu" class="hidden md:hidden bg-black/90 backdrop-blur-sm px-6 pb-4">
-            <a href="#services" class="block py-2 text-gray-300 hover:text-white">Services</a>
-            <a href="#gallery" class="block py-2 text-gray-300 hover:text-white">Gallery</a>
-            <a href="#contact" class="block py-2 text-gray-300 hover:text-white">Contact</a>
-            <a href="#contact" class="block mt-2 button-primary font-bold py-2 px-5 rounded-lg text-center">Start a Project</a>
+            <a href="#services" class="block py-2 text-gray-300 hover:text-white" data-i18n="nav_services">Services</a>
+            <a href="#gallery" class="block py-2 text-gray-300 hover:text-white" data-i18n="nav_gallery">Gallery</a>
+            <a href="#contact" class="block py-2 text-gray-300 hover:text-white" data-i18n="nav_contact">Contact</a>
+            
+            <!-- Language Toggle Mobile -->
+            <div class="flex space-x-4 py-2 mt-2 border-t border-gray-800">
+                <button onclick="changeLanguage('en')" class="text-sm font-bold text-gray-400 hover:text-white">English</button>
+                <button onclick="changeLanguage('ru')" class="text-sm font-bold text-gray-400 hover:text-white">Русский</button>
+            </div>
+
+            <a href="#contact" class="block mt-2 button-primary font-bold py-2 px-5 rounded-lg text-center" data-i18n="nav_start">Start a Project</a>
         </div>
     </header>
 
     <main class="overflow-x-hidden">
         <section class="relative min-h-screen flex items-center justify-center p-4 overflow-hidden">
+            <!-- Hero images updated to use 'small' folder for faster LCP -->
             <div class="absolute inset-0 grid grid-cols-3 grid-rows-3 gap-2 md:gap-4 transform scale-110">
-                <div class="col-span-1 row-span-1 overflow-hidden"><img src="./webp/i_3.webp" class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-105" alt="Architectural Render 1"></div>
-                <div class="col-span-1 row-span-2 overflow-hidden"><img src="./webp/ex_4.webp" class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-105" alt="Architectural Render 2"></div>
-                <div class="col-span-1 row-span-1 overflow-hidden"><img src="./webp/v_3.webp" class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-105" alt="Architectural Render 3"></div>
-                <div class="col-span-1 row-span-2 overflow-hidden"><img src="./webp/c_2.webp" class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-105" alt="Architectural Render 4"></div>
-                <div class="col-span-1 row-span-1 overflow-hidden"><img src="./webp/v_1.webp" class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-105" alt="Architectural Render 5"></div>
-                <div class="col-span-1 row-span-1 overflow-hidden"><img src="./webp/i_1.webp" class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-105" alt="Architectural Render 6"></div>
-                 <div class="col-span-1 row-span-1 overflow-hidden"><img src="./webp/i_5.webp" class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-105" alt="Architectural Render 6"></div>
+                <div class="col-span-1 row-span-1 overflow-hidden"><img src="./webp/small/i_3.webp" class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-105" alt="Architectural Render 1"></div>
+                <div class="col-span-1 row-span-2 overflow-hidden"><img src="./webp/small/ex_4.webp" class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-105" alt="Architectural Render 2"></div>
+                <div class="col-span-1 row-span-1 overflow-hidden"><img src="./webp/small/v_3.webp" class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-105" alt="Architectural Render 3"></div>
+                <div class="col-span-1 row-span-2 overflow-hidden"><img src="./webp/small/c_2.webp" class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-105" alt="Architectural Render 4"></div>
+                <div class="col-span-1 row-span-1 overflow-hidden"><img src="./webp/small/v_1.webp" class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-105" alt="Architectural Render 5"></div>
+                <div class="col-span-1 row-span-1 overflow-hidden"><img src="./webp/small/i_1.webp" class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-105" alt="Architectural Render 6"></div>
+                 <div class="col-span-1 row-span-1 overflow-hidden"><img src="./webp/small/i_5.webp" class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-105" alt="Architectural Render 6"></div>
             </div>
             <div class="absolute inset-0 bg-black/70"></div>
             <div class="container mx-auto px-6 text-center relative z-10">
-                <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-4 font-heading">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-4 font-heading" data-i18n="hero_title">
                     The Art of Visualization
                 </h1>
-                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8" data-i18n="hero_desc">
                     At Sky Render we turn your ideas into reality… well, almost into reality… We believe visualisation isn’t just a tool. It’s an art that helps you see tomorrow today.
                 </p>
-                <a href="#gallery" class="button-primary font-bold py-3 px-8 rounded-lg text-lg shadow-md inline-block">
+                <a href="#gallery" class="button-primary font-bold py-3 px-8 rounded-lg text-lg shadow-md inline-block" data-i18n="hero_cta">
                     Explore Our Work
                 </a>
             </div>
@@ -150,29 +174,30 @@
         <section id="services" class="py-24 bg-black fade-in-section">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white font-heading">Our Services</h2>
-                    <p class="text-gray-400 mt-2 max-w-2xl mx-auto">From architectural marvels to product showcases, we provide a full spectrum of 3D services.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white font-heading" data-i18n="services_heading">Our Services</h2>
+                    <p class="text-gray-400 mt-2 max-w-2xl mx-auto" data-i18n="services_sub">From architectural marvels to product showcases, we provide a full spectrum of 3D services.</p>
                 </div>
+                <!-- Service images updated to use 'small' folder -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="card p-0 text-center rounded-xl overflow-hidden">
-                        <img src="./webp/ex_4.webp" alt="Exterior Visualization" class="w-full h-64 object-cover">
+                        <img src="./webp/small/ex_4.webp" alt="Exterior Visualization" class="w-full h-64 object-cover" loading="lazy">
                         <div class="p-8">
-                            <h3 class="text-xl font-semibold text-white mb-3 font-heading">Exterior Visualization</h3>
-                            <p class="text-gray-400">Creating emotive and realistic images of unbuilt architecture and spaces.</p>
+                            <h3 class="text-xl font-semibold text-white mb-3 font-heading" data-i18n="service_ext_title">Exterior Visualization</h3>
+                            <p class="text-gray-400" data-i18n="service_ext_desc">Creating emotive and realistic images of unbuilt architecture and spaces.</p>
                         </div>
                     </div>
                     <div class="card p-0 text-center rounded-xl overflow-hidden">
-                        <img src="./webp/i_1.webp" alt="Interior Visualization" class="w-full h-64 object-cover">
+                        <img src="./webp/small/i_1.webp" alt="Interior Visualization" class="w-full h-64 object-cover" loading="lazy">
                         <div class="p-8">
-                            <h3 class="text-xl font-semibold text-white mb-3 font-heading">Interior Visualization</h3>
-                            <p class="text-gray-400">Bringing interior concepts to life with stunning detail, texture, and lighting.</p>
+                            <h3 class="text-xl font-semibold text-white mb-3 font-heading" data-i18n="service_int_title">Interior Visualization</h3>
+                            <p class="text-gray-400" data-i18n="service_int_desc">Bringing interior concepts to life with stunning detail, texture, and lighting.</p>
                         </div>
                     </div>
                         <div class="card p-0 text-center rounded-xl overflow-hidden">
-                        <img src="./webp/h_1.webp" alt="Interior Visualization" class="w-full h-64 object-cover [object-position:25%_75%]">
+                        <img src="./webp/small/h_1.webp" alt="Interior Visualization" class="w-full h-64 object-cover [object-position:25%_75%]" loading="lazy">
                         <div class="p-8">
-                            <h3 class="text-xl font-semibold text-white mb-3 font-heading">Product Visualization</h3>
-                            <p class="text-gray-400">Perfect for marketing and e-commerce with flawless 3D models.</p>
+                            <h3 class="text-xl font-semibold text-white mb-3 font-heading" data-i18n="service_prod_title">Product Visualization</h3>
+                            <p class="text-gray-400" data-i18n="service_prod_desc">Perfect for marketing and e-commerce with flawless 3D models.</p>
                         </div>
                     </div>
                 </div>
@@ -182,93 +207,99 @@
         <section id="gallery" class="py-24 bg-black fade-in-section">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white font-heading">Gallery</h2>
-                    <p class="text-gray-400 mt-2">A selection of our finest creations.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white font-heading" data-i18n="gallery_heading">Gallery</h2>
+                    <p class="text-gray-400 mt-2" data-i18n="gallery_sub">A selection of our finest creations.</p>
                 </div>
                 <div class="gallery-columns">
+                    <!-- 
+                        UPDATED LOGIC:
+                        1. 'src' = './webp/small/...' (Lightweight for page load)
+                        2. 'data-img-src' = './webp/big/...' (Heavy for Modal)
+                    -->
+                    
                     <!-- Exterior Visualizations -->
-                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/ex_5.webp">
-                        <img src="./webp/ex_5.webp" alt="Exterior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/big/ex_5.webp">
+                        <img src="./webp/small/ex_5.webp" alt="Exterior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
-                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/ex_4.webp">
-                        <img src="./webp/ex_4.webp" alt="Exterior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">  
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/big/ex_4.webp">
+                        <img src="./webp/small/ex_4.webp" alt="Exterior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy">  
                     </div>
-                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/ex_1.webp">
-                        <img src="./webp/ex_1.webp" alt="Exterior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/big/ex_1.webp">
+                        <img src="./webp/small/ex_1.webp" alt="Exterior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
-                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/ex_2.webp">
-                        <img src="./webp/ex_2.webp" alt="Exterior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/big/ex_2.webp">
+                        <img src="./webp/small/ex_2.webp" alt="Exterior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
-                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/ex_3.webp">
-                        <img src="./webp/ex_3.webp" alt="Exterior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/big/ex_3.webp">
+                        <img src="./webp/small/ex_3.webp" alt="Exterior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
 
                     <!-- Interior & Miscellaneous Visualizations -->
-                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/r_1.webp">
-                        <img src="./webp/r_1.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/big/r_1.webp">
+                        <img src="./webp/small/r_1.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
-                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/h_1.webp">
-                        <img src="./webp/h_1.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/big/h_1.webp">
+                        <img src="./webp/small/h_1.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
-                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/i_1.webp">
-                        <img src="./webp/i_1.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/big/i_1.webp">
+                        <img src="./webp/small/i_1.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
-                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/i_2.webp">
-                        <img src="./webp/i_2.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/big/i_2.webp">
+                        <img src="./webp/small/i_2.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
-                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/i_3.webp">
-                        <img src="./webp/i_3.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/big/i_3.webp">
+                        <img src="./webp/small/i_3.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
-                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/i_4.webp">
-                        <img src="./webp/i_4.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/big/i_4.webp">
+                        <img src="./webp/small/i_4.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
-                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/i_5.webp">
-                        <img src="./webp/i_5.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/big/i_5.webp">
+                        <img src="./webp/small/i_5.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
-                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/m_1.webp">
-                        <img src="./webp/m_1.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/big/m_1.webp">
+                        <img src="./webp/small/m_1.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
-                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/n_1.webp">
-                        <img src="./webp/n_1.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/big/n_1.webp">
+                        <img src="./webp/small/n_1.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
-                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/n_2.webp">
-                        <img src="./webp/n_2.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/big/n_2.webp">
+                        <img src="./webp/small/n_2.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
-                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/n_3.webp">
-                        <img src="./webp/n_3.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/big/n_3.webp">
+                        <img src="./webp/small/n_3.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
-                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/v_1.webp">
-                        <img src="./webp/v_1.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/big/v_1.webp">
+                        <img src="./webp/small/v_1.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
-                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/v_2.webp">
-                        <img src="./webp/v_2.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/big/v_2.webp">
+                        <img src="./webp/small/v_2.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
-                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/v_3.webp">
-                        <img src="./webp/v_3.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/big/v_3.webp">
+                        <img src="./webp/small/v_3.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
-                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/y_1.webp">
-                        <img src="./webp/y_1.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/big/y_1.webp">
+                        <img src="./webp/small/y_1.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
-                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/y_2.webp">
-                        <img src="./webp/y_2.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/big/y_2.webp">
+                        <img src="./webp/small/y_2.webp" alt="Interior Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
-                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/c_1.webp">
-                        <img src="./webp/c_1.webp" alt="Miscellaneous Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/big/c_1.webp">
+                        <img src="./webp/small/c_1.webp" alt="Miscellaneous Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
-                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/c_2.webp">
-                        <img src="./webp/c_2.webp" alt="Miscellaneous Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/big/c_2.webp">
+                        <img src="./webp/small/c_2.webp" alt="Miscellaneous Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
-                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/1.webp">
-                        <img src="./webp/1.webp" alt="Miscellaneous Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/big/1.webp">
+                        <img src="./webp/small/1.webp" alt="Miscellaneous Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
-                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/2.webp">
-                        <img src="./webp/2.webp" alt="Miscellaneous Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/big/2.webp">
+                        <img src="./webp/small/2.webp" alt="Miscellaneous Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
-                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/3.webp">
-                        <img src="./webp/3.webp" alt="Miscellaneous Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/big/3.webp">
+                        <img src="./webp/small/3.webp" alt="Miscellaneous Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
-                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/4.webp">
-                        <img src="./webp/4.webp" alt="Miscellaneous Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer" data-img-src="./webp/big/4.webp">
+                        <img src="./webp/small/4.webp" alt="Miscellaneous Visualization" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -278,12 +309,12 @@
         <div class="container mx-auto px-6">
             <div class="text-center mb-12">
                 <!-- Updated heading to be more direct -->
-                <h2 class="text-3xl md:text-4xl font-bold text-white">Find us on Telegram</h2>
-                <p class="text-gray-400 mt-2">Let's connect. Click the link below to chat @sky_rndr.</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-white" data-i18n="contact_heading">Find us on Telegram</h2>
+                <p class="text-gray-400 mt-2" data-i18n="contact_sub">Let's connect. Click the link below to chat @sky_rndr.</p>
             </div>
             <div class="max-w-2xl mx-auto bg-[#111111] border border-[#222] p-8 rounded-xl shadow-lg text-center">
                 <!-- A simple link styled as a button -->
-                <a href="https://t.me/sky_rndr" target="_blank" class="button-primary font-bold py-3 px-10 rounded-lg text-lg shadow-md inline-block">
+                <a href="https://t.me/sky_rndr" target="_blank" class="button-primary font-bold py-3 px-10 rounded-lg text-lg shadow-md inline-block" data-i18n="contact_btn">
                     Chat on Telegram
                 </a>
             </div>
@@ -293,24 +324,122 @@
     <footer class="bg-black border-t border-[#222]">
         <div class="container mx-auto px-6 py-8">
             <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
-                <p class="text-gray-500">&copy; 2025 Sky Render. All Rights Reserved.</p>
+                <p class="text-gray-500" data-i18n="copyright">&copy; 2025 Sky Render. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
     <!-- Full-screen modal for gallery images -->
     <div id="image-modal" class="fixed inset-0 bg-black/90 z-[100] hidden items-center justify-center p-4">
-        <div class="relative max-w-7xl max-h-[90vh] w-full">
-            <button id="modal-close" class="absolute top-4 right-4 text-white hover:text-accent-color transition-colors z-20">
-                <i data-lucide="x" class="w-8 h-8"></i>
+        <div class="relative max-w-[90vw] max-h-[90vh] flex flex-col items-center">
+            <!-- Close Button -->
+            <button id="modal-close" class="absolute top-4 right-4 text-white hover:text-accent-color transition-colors z-20 bg-black/50 p-2 rounded-full">
+                <i data-lucide="x" class="w-6 h-6"></i>
             </button>
-            <img id="modal-image" src="" alt="Full screen gallery image" class="rounded-xl shadow-lg w-full h-full object-contain">
+            
+            <!-- Main Image -->
+            <img id="modal-image" src="" alt="Full screen gallery image" class="rounded-xl shadow-lg w-auto h-auto max-w-full max-h-[90vh] object-contain">
+            
+            <!-- Download Button REMOVED -->
         </div>
     </div>
 
     <script>
         lucide.createIcons();
 
+        /* --- Localization Logic --- */
+        const translations = {
+            en: {
+                nav_services: "Services",
+                nav_gallery: "Gallery",
+                nav_contact: "Contact",
+                nav_start: "Start a Project",
+                hero_title: "The Art of Visualization",
+                hero_desc: "At Sky Render we turn your ideas into reality… well, almost into reality… We believe visualisation isn’t just a tool. It’s an art that helps you see tomorrow today.",
+                hero_cta: "Explore Our Work",
+                services_heading: "Our Services",
+                services_sub: "From architectural marvels to product showcases, we provide a full spectrum of 3D services.",
+                service_ext_title: "Exterior Visualization",
+                service_ext_desc: "Creating emotive and realistic images of unbuilt architecture and spaces.",
+                service_int_title: "Interior Visualization",
+                service_int_desc: "Bringing interior concepts to life with stunning detail, texture, and lighting.",
+                service_prod_title: "Product Visualization",
+                service_prod_desc: "Perfect for marketing and e-commerce with flawless 3D models.",
+                gallery_heading: "Gallery",
+                gallery_sub: "A selection of our finest creations.",
+                contact_heading: "Find us on Telegram",
+                contact_sub: "Let's connect. Click the link below to chat @sky_rndr.",
+                contact_btn: "Chat on Telegram",
+                copyright: "&copy; 2025 Sky Render. All Rights Reserved."
+            },
+            ru: {
+                nav_services: "Услуги",
+                nav_gallery: "Галерея",
+                nav_contact: "Контакты",
+                nav_start: "Начать Проект",
+                hero_title: "Искусство Визуализации",
+                hero_desc: "В Sky Render мы воплощаем ваши идеи в реальность... ну, или почти в реальность... Мы верим, что визуализация — это не просто инструмент. Это искусство, которое помогает увидеть будущее уже сегодня.",
+                hero_cta: "Смотреть Работы",
+                services_heading: "Наши Услуги",
+                services_sub: "От архитектурных шедевров до презентации продуктов — мы предоставляем полный спектр 3D-услуг.",
+                service_ext_title: "Экстерьерная Визуализация",
+                service_ext_desc: "Создание эмоциональных и реалистичных изображений будущей архитектуры и пространств.",
+                service_int_title: "Интерьерная Визуализация",
+                service_int_desc: "Воплощение концепций интерьера в жизнь с потрясающей детализацией и светом.",
+                service_prod_title: "Предметная Визуализация",
+                service_prod_desc: "Идеально для маркетинга и e-commerce: безупречные 3D-модели ваших продуктов.",
+                gallery_heading: "Галерея",
+                gallery_sub: "Подборка наших лучших работ.",
+                contact_heading: "Мы в Telegram",
+                contact_sub: "Давайте свяжемся. Нажмите на ссылку ниже, чтобы написать @sky_rndr.",
+                contact_btn: "Написать в Telegram",
+                copyright: "&copy; 2025 Sky Render. Все права защищены."
+            }
+        };
+
+        function changeLanguage(lang) {
+            // Update Text
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    el.innerHTML = translations[lang][key]; // innerHTML allows for html entities like &copy;
+                }
+            });
+
+            // Update Active State Visuals (Desktop)
+            document.getElementById('btn-en').classList.remove('active', 'text-[#d4af37]');
+            document.getElementById('btn-ru').classList.remove('active', 'text-[#d4af37]');
+            
+            if (lang === 'en') {
+                document.getElementById('btn-en').classList.add('active', 'text-[#d4af37]');
+            } else {
+                document.getElementById('btn-ru').classList.add('active', 'text-[#d4af37]');
+            }
+
+            // Save preference
+            localStorage.setItem('preferredLang', lang);
+            document.documentElement.lang = lang;
+        }
+
+        // Initialize Language
+        (function initLanguage() {
+            const savedLang = localStorage.getItem('preferredLang');
+            let initialLang = 'en';
+
+            if (savedLang) {
+                initialLang = savedLang;
+            } else {
+                // Detect browser language
+                const userLang = navigator.language || navigator.userLanguage; 
+                if (userLang && userLang.toLowerCase().includes('ru')) {
+                    initialLang = 'ru';
+                }
+            }
+            changeLanguage(initialLang);
+        })();
+
+        /* --- Existing Interactions --- */
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         mobileMenuButton.addEventListener('click', () => {
@@ -335,7 +464,6 @@
 
         const faders = document.querySelectorAll('.fade-in-section');
         const appearOptions = {
-            // Lower threshold and adjust rootMargin to make it more reliable on mobile
             threshold: 0.05,
             rootMargin: "0px 0px -20px 0px"
         };
@@ -351,6 +479,7 @@
             appearOnScroll.observe(fader);
         });
 
+        /* --- Modal Logic for Hi-Res Images --- */
         const imageModal = document.getElementById('image-modal');
         const modalImage = document.getElementById('modal-image');
         const modalClose = document.getElementById('modal-close');
@@ -358,8 +487,12 @@
 
         galleryItems.forEach(item => {
             item.addEventListener('click', () => {
-                const imgSrc = item.getAttribute('data-img-src');
-                modalImage.src = imgSrc;
+                // Logic: 
+                // 1. Get the 'Web Display' version (which is now the BIG one for the modal)
+                const bigSrc = item.getAttribute('data-img-src');
+                
+                modalImage.src = bigSrc;
+                
                 imageModal.classList.remove('hidden');
                 imageModal.classList.add('flex');
             });
